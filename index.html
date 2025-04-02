@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIX Inode File System Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>UNIX Inode File System Simulator</h1>
+            <div class="subtitle">Visualizing inode structure and block allocation</div>
+        </div>
+        
+        <div class="main-content">
+            <div class="file-system">
+                <h3 class="panel-title">File System</h3>
+                
+                <div class="disk-visualization" id="disk"></div>
+                
+                <div class="controls">
+                    <button id="init-fs">Initialize File System</button>
+                    <button id="defragment">Defragment</button>
+                </div>
+                
+                <div class="file-explorer" id="file-explorer"></div>
+                
+                <div class="file-ops">
+                    <input type="text" id="filename" placeholder="Filename">
+                    <input type="number" id="filesize" placeholder="Size (bytes)" min="1" value="1024">
+                    <button id="create-file">Create File</button>
+                    <button id="delete-file">Delete File</button>
+                </div>
+                
+                <div class="status-bar" id="status">
+                    File system not initialized. Click "Initialize File System" to begin.
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #4caf50;"></div>
+                        <span>Direct Blocks</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #2196f3;"></div>
+                        <span>Single Indirect</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #9c27b0;"></div>
+                        <span>Double Indirect</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ff9800;"></div>
+                        <span>Triple Indirect</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #2a2a2a;"></div>
+                        <span>Free Blocks</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="inode-details">
+                <h3 class="panel-title">Inode Details</h3>
+                
+                <div class="inode-structure">
+                    <div class="inode-section">
+                        <h4 class="inode-section-title">Attributes</h4>
+                        <div class="inode-attributes" id="inode-attributes"></div>
+                    </div>
+                    
+                    <div class="inode-section">
+                        <h4 class="inode-section-title">Direct Blocks (12)</h4>
+                        <div class="block-pointers" id="direct-blocks"></div>
+                    </div>
+                    
+                    <div class="inode-section">
+                        <h4 class="inode-section-title">Single Indirect Block</h4>
+                        <div class="block-pointers" id="single-indirect"></div>
+                    </div>
+                    
+                    <div class="inode-section">
+                        <h4 class="inode-section-title">Double Indirect Block</h4>
+                        <div class="block-pointers" id="double-indirect"></div>
+                    </div>
+                    
+                    <div class="inode-section">
+                        <h4 class="inode-section-title">Triple Indirect Block</h4>
+                        <div class="block-pointers" id="triple-indirect"></div>
+                    </div>
+                </div>
+                
+                <div class="status-bar" id="inode-status">
+                    No file selected. Click on a file in the file explorer to view its inode.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tooltip" id="tooltip"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
